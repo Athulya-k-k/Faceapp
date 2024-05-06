@@ -49,7 +49,7 @@ def forgot_password(request):
     if user:
         token = PasswordResetTokenGenerator().make_token(user)
         uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
-        reset_link = f'http://127.0.0.1:5500/frontend/html/ResetPass.html?uidb64={uidb64}&token={token}'
+        reset_link = f'http://127.0.0.1:5501/frontend/html/ResetPass.html?uidb64={uidb64}&token={token}'
         send_mail(
     'Reset your password',
     f'Click the link to reset your password: {reset_link}',

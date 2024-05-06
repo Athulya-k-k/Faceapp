@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts',
     "corsheaders", 
     'django.contrib.sites',
+    'app',
     
 ]
 SITE_ID = 1
