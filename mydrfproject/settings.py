@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'accounts',
     "corsheaders", 
     'django.contrib.sites',
-    'app',
+    
+    
     
 ]
 SITE_ID = 1
@@ -56,8 +57,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-   
-    
 ]
 
 ROOT_URLCONF = 'mydrfproject.urls'
@@ -78,11 +77,17 @@ TEMPLATES = [
     },
 ]
 
-REST_FRAMEWORK = { 
-    'DEFAULT_AUTHENTICATION_CLASSES': [ 
-        'rest_framework_simplejwt.authentication.JWTAuthentication', 
-    ], 
-} 
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
 
 WSGI_APPLICATION = 'mydrfproject.wsgi.application'
 

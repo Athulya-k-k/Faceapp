@@ -1,13 +1,9 @@
 from django.urls import path
-from .views import register_user, user_login, user_logout,forgot_password,reset_password
-from .import views
-from django.contrib.auth import views as auth_views
+from .views import register_user, register_staff, login
+from . import views
 
 urlpatterns = [
-    path('register/', register_user, name='register'),
-    path('login/', user_login, name='login'),
-    path('logout/', user_logout, name='logout'),
-    path('forgot_password/', forgot_password, name='forgot_password'),
-    path('reset_password/<str:uidb64>/<str:token>/', reset_password, name='reset_password'),
-    
+    path('register/', register_user, name='register_user'),
+    path('register-staff/', register_staff, name='register_staff_user'),
+    path('login/', views.user_login, name='user_login'), 
 ]
