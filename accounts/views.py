@@ -20,8 +20,8 @@ def register_staff(request):
     if request.method == 'POST':
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
-            # Set the role to "staff" explicitly
-            serializer.save(role='staff')
+            # Set the role to "licency" for licensees
+            serializer.save(role='licency')
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -44,4 +44,12 @@ def user_login(request):
     else:
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
-
+@api_view(['POST'])
+def register_vendor(request):
+    if request.method == 'POST':
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            # Set the role to "vendor" for vendors
+            serializer.save(role='vendor')
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
