@@ -49,7 +49,13 @@ def register_vendor(request):
     if request.method == 'POST':
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
-            # Set the role to "vendor" for vendors
             serializer.save(role='vendor')
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def registered_users_list(request):
+    users = CustomUser.objects.filter(role__in=['licency', 'vendor'])
+    serializer = UserSerializer(users, many=True)
+    return Response(serializer.data)
