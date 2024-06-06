@@ -88,7 +88,7 @@ def get_user(request, user_id):
 def update_user(request, user_id):
     try:
         user = CustomUser.objects.get(id=user_id)
-        serializer = UserSerializer(user, data=request.data)
+        serializer = UserSerializer(user, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
